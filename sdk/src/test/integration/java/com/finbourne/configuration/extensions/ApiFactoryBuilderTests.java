@@ -1,9 +1,8 @@
 package com.finbourne.configuration.extensions;
 
 import com.finbourne.configuration.ApiException;
-// UNCOMMENT BELOW TWO LINES TO IMPORT AN API AND THE TYPE A CALL FROM IT RETURNS
-// import com.finbourne.configuration.api.;
-// import com.finbourne.configuration.model.;
+import com.finbourne.configuration.api.ConfigurationSetsApi;
+import com.finbourne.configuration.model.ResourceListOfConfigurationSetSummary;
 import com.finbourne.configuration.extensions.auth.FinbourneTokenException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,26 +12,25 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.empty;
 import static org.junit.Assert.assertThat;
 
-// UNCOMMENT BELOW TESTS AND USE IMPORTED API TO MAKE A VALID CALL - DRIVE FOLDERS API IS BEING USED AS AN EXAMPLE
-// public class ApiFactoryBuilderTests {
+ public class ApiFactoryBuilderTests {
 
-//     @Rule
-//     public ExpectedException thrown = ExpectedException.none();
+     @Rule
+     public ExpectedException thrown = ExpectedException.none();
 
-//     @Test
-//     public void build_WithExistingConfigurationFile_ShouldReturnFactory() throws ApiException, ApiConfigurationException, FinbourneTokenException {
-//         ApiFactory apiFactory = ApiFactoryBuilder.build(CredentialsSource.credentialsFile);
-//         assertThat(apiFactory, is(notNullValue()));
-//         assertThatFactoryBuiltApiCanMakeApiCalls(apiFactory);
-//     }
+     @Test
+     public void build_WithExistingConfigurationFile_ShouldReturnFactory() throws ApiException, ApiConfigurationException, FinbourneTokenException {
+         ApiFactory apiFactory = ApiFactoryBuilder.build(CredentialsSource.credentialsFile);
+         assertThat(apiFactory, is(notNullValue()));
+         assertThatFactoryBuiltApiCanMakeApiCalls(apiFactory);
+     }
 
-//     private static void assertThatFactoryBuiltApiCanMakeApiCalls(ApiFactory apiFactory) throws ApiException {
-//         FoldersApi foldersApi = apiFactory.build(FoldersApi.class);
-//         PagedResourceListOfStorageObject rootFolder = foldersApi.getRootFolder(null, null, null, null, null);
-//         assertThat("Folders API created by factory should return root folder"
-//                 , rootFolder, is(notNullValue()));
-//         assertThat("Root folder contents types returned by the folders API should not be empty",
-//                 rootFolder.getValues(), not(empty()));
-//     }
+     private static void assertThatFactoryBuiltApiCanMakeApiCalls(ApiFactory apiFactory) throws ApiException {
+         ConfigurationSetsApi configurationSetsApi = apiFactory.build(ConfigurationSetsApi.class);
+         ResourceListOfConfigurationSetSummary listOfConfigurationSetSummary = configurationSetsApi.listConfigurationSets(null, null);
+         assertThat("Configuration sets API created by factory should return list"
+                 , listOfConfigurationSetSummary, is(notNullValue()));
+         assertThat("list contents types returned by the configuration sets API should not be empty",
+                 listOfConfigurationSetSummary.getValues(), not(empty()));
+     }
 
-// }
+ }

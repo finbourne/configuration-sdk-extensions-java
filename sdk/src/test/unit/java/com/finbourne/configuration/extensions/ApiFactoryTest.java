@@ -1,9 +1,8 @@
 package com.finbourne.configuration.extensions;
 
 import com.finbourne.configuration.ApiClient;
-// UNCOMMENT BELOW LINES IMPORTING THE API(S) YOU WANT TO TEST, AND AN ARBITRARY OBJECT FOR AN EXCEPTION TEST
-// import com.finbourne.configuration.api.;
-// import com.finbourne.configuration.model.;
+import com.finbourne.configuration.api.ConfigurationSetsApi;
+import com.finbourne.configuration.model.ActionId;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,46 +26,45 @@ public class ApiFactoryTest {
         apiFactory = new ApiFactory(apiClient);
     }
 
-    // UNCOMMENT BELOW TESTS AND MODIFY THEM FOR THE DESIRED SDK - DRIVE EXAMPLES BEING SHOWN HERE
     // General Cases
 
-    // @Test
-    // public void build_ForFilesApi_ReturnFilesApi(){
-    //     FilesApi filesApi = apiFactory.build(FilesApi.class);
-    //     assertThat(filesApi, instanceOf(FilesApi.class));
-    // }
+     @Test
+     public void build_ForConfigurationSetsApi_ReturnConfigurationSetsApi(){
+         ConfigurationSetsApi configurationSetsApi = apiFactory.build(ConfigurationSetsApi.class);
+         assertThat(configurationSetsApi, instanceOf(ConfigurationSetsApi.class));
+     }
 
-    // @Test
-    // public void build_ForAnyApi_SetsTheApiFactoryClientAndNotTheDefault(){
-    //     FilesApi filesApi = apiFactory.build(FilesApi.class);
-    //     assertThat(filesApi.getApiClient(), equalTo(apiClient));
-    // }
+     @Test
+     public void build_ForAnyApi_SetsTheApiFactoryClientAndNotTheDefault(){
+         ConfigurationSetsApi configurationSetsApi = apiFactory.build(ConfigurationSetsApi.class);
+         assertThat(configurationSetsApi.getApiClient(), equalTo(apiClient));
+     }
 
-    // // Singleton Check Cases
+     // Singleton Check Cases
 
-    // @Test
-    // public void build_ForSameApiBuiltAgainWithSameFactory_ReturnTheSameSingletonInstanceOfApi(){
-    //     FilesApi filesApi = apiFactory.build(FilesApi.class);
-    //     FilesApi filesApiSecond = apiFactory.build(FilesApi.class);
-    //     assertThat(filesApi, sameInstance(filesApiSecond));
-    // }
+     @Test
+     public void build_ForSameApiBuiltAgainWithSameFactory_ReturnTheSameSingletonInstanceOfApi(){
+         ConfigurationSetsApi configurationSetsApi = apiFactory.build(ConfigurationSetsApi.class);
+         ConfigurationSetsApi configurationSetsApiSecond = apiFactory.build(ConfigurationSetsApi.class);
+         assertThat(configurationSetsApi, sameInstance(configurationSetsApiSecond));
+     }
 
-    // @Test
-    // public void build_ForSameApiBuiltWithDifferentFactories_ReturnAUniqueInstanceOfApi(){
-    //     FilesApi filesApi = apiFactory.build(FilesApi.class);
-    //     FilesApi filesApiSecond = new ApiFactory(mock(ApiClient.class)).build(FilesApi.class);
-    //     assertThat(filesApi, not(sameInstance(filesApiSecond)));
-    // }
+     @Test
+     public void build_ForSameApiBuiltWithDifferentFactories_ReturnAUniqueInstanceOfApi(){
+         ConfigurationSetsApi configurationSetsApi = apiFactory.build(ConfigurationSetsApi.class);
+         ConfigurationSetsApi configurationSetsApiSecond = new ApiFactory(mock(ApiClient.class)).build(ConfigurationSetsApi.class);
+         assertThat(configurationSetsApi, not(sameInstance(configurationSetsApiSecond)));
+     }
 
-    // // Error Cases
+     // Error Cases
 
-    // @Test
-    // public void build_ForNonApiPackageClass_ShouldThrowException(){
-    //     thrown.expect(UnsupportedOperationException.class);
-    //     thrown.expectMessage("com.finbourne.drive.model.StorageObject class is not a supported API class. " +
-    //             "Supported API classes live in the " + ApiFactory.API_PACKAGE + " package.");
-    //     apiFactory.build(StorageObject.class);
-    // }
+     @Test
+     public void build_ForNonApiPackageClass_ShouldThrowException(){
+         thrown.expect(UnsupportedOperationException.class);
+         thrown.expectMessage("com.finbourne.configuration.model.ActionId class is not a supported API class. " +
+                 "Supported API classes live in the " + ApiFactory.API_PACKAGE + " package.");
+         apiFactory.build(ActionId.class);
+     }
 
 
 
