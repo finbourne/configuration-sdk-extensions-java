@@ -5,7 +5,7 @@
     <artifactId>configuration-sdk-extensions</artifactId>
     <packaging>jar</packaging>
     <name>configuration-sdk-extensions</name>
-    <version>0.17.0</version>
+    <version>0.18.0</version>
     <url>https://github.com/finbourne/configuration-sdk-extensions-java</url>
     <description>FINBOURNE Configuration SDK Extensions</description>
     <scm>
