@@ -5,7 +5,7 @@
     <artifactId>configuration-sdk-extensions</artifactId>
     <packaging>jar</packaging>
     <name>configuration-sdk-extensions</name>
-    <version>0.20.0</version>
+    <version>0.21.0</version>
     <url>https://github.com/finbourne/configuration-sdk-extensions-java</url>
     <description>FINBOURNE Configuration SDK Extensions</description>
     <scm>
@@ -401,6 +401,6 @@
         <junit-version>4.13.1</junit-version>
         <hamcrest-version>1.3</hamcrest-version>
         <mockito-version>3.3.3</mockito-version>
-        <configuration-sdk-version>0.1.261-SNAPSHOT</configuration-sdk-version>
+        <configuration-sdk-version>0.1.270-SNAPSHOT</configuration-sdk-version>
     </properties>
 </project>
